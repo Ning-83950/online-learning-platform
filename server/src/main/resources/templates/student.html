@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>在线学习平台 - 学习中心</title>
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+  <div class="portal">
+    <header class="portal-header">
+      <strong>在线学习平台</strong>
+      <button onclick="loadStudentCourses()">课程中心</button>
+      <button onclick="openModule('enrollments')">学习记录</button>
+      <button onclick="openModule('notes')">学习笔记</button>
+      <button onclick="openModule('assignments')">课程作业</button>
+      <button onclick="openModule('exams')">课程测试</button>
+      <span data-user-name></span>
+      <button data-logout>退出登录</button>
+    </header>
+    <main class="portal-main" id="content"></main>
+  </div>
+  <div id="modal" class="modal-mask"></div>
+  <script th:src="@{/assets/js/echarts.min.js}"></script>
+  <script th:src="@{/assets/js/app.js}"></script>
+  <script>initPortal("student");</script>
+</body>
+</html>

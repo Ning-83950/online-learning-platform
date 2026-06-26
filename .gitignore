@@ -1,0 +1,27 @@
+# 编译文件
+target/
+*.class
+
+# IDE 文件
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# 日志
+*.log
+logs/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# 上传文件（按需保留或忽略）
+# upload/

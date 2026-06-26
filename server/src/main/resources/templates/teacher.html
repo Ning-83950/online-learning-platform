@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线学习平台 - 教师工作台</title>
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h1 class="brand">教师工作台</h1>
+      <button class="nav-btn active" data-module="courses">课程管理</button>
+      <button class="nav-btn" data-module="materials">课程资料</button>
+      <button class="nav-btn" data-module="enrollments">学生学习情况</button>
+      <button class="nav-btn" data-module="assignments">作业管理</button>
+      <button class="nav-btn" data-module="submissions">作业批改</button>
+      <button class="nav-btn" data-module="exams">测试管理</button>
+      <button class="nav-btn" data-module="examRecords">成绩管理</button>
+      <button class="nav-btn" data-module="discussions">教学互动</button>
+      <button class="nav-btn" data-logout>退出登录</button>
+    </aside>
+    <main class="main" id="content"></main>
+  </div>
+  <div id="modal" class="modal-mask"></div>
+  <script th:src="@{/assets/js/echarts.min.js}"></script>
+  <script th:src="@{/assets/js/app.js}"></script>
+  <script>initApp("courses");</script>
+</body>
+</html>
