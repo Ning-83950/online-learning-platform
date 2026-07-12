@@ -49,7 +49,7 @@ type VARCHAR(20) NOT NULL,
 name VARCHAR(100) NOT NULL,
 file_url VARCHAR(255) NOT NULL,
 sort INT DEFAULT 0,
-created_at DATETIME NOT NULL,
+created_at DATETIME NOT NULL
 );
 -- 选课学习记录表：记录学习进度、学习时长和最近学习时间
 CREATE TABLE enrollment (
@@ -71,7 +71,7 @@ user_id BIGINT NOT NULL,
 parent_id BIGINT DEFAULT NULL,
 content TEXT NOT NULL,
 status VARCHAR(20) NOT NULL DEFAULT 'OPEN',
-created_at DATETIME NOT NULL,
+created_at DATETIME NOT NULL
 );
 -- 学习笔记表：学习者记录和查看课程笔记
 CREATE TABLE study_note (
@@ -79,7 +79,7 @@ id BIGINT PRIMARY KEY AUTO_INCREMENT,
 student_id BIGINT NOT NULL,
 course_id BIGINT NOT NULL,
 content TEXT NOT NULL,
-created_at DATETIME NOT NULL,
+created_at DATETIME NOT NULL
 );
 -- 作业表：教师发布课程作业
 CREATE TABLE assignment (
