@@ -39,8 +39,7 @@ hot_score INT DEFAULT 0,
 enroll_count INT DEFAULT 0,
 duration_minutes INT DEFAULT 0,
 created_at DATETIME NOT NULL,
-updated_at DATETIME NOT NULL,
-,
+updated_at DATETIME NOT NULL
 );
 -- 课程资料表：保存课程视频、文档等资料上传路径
 CREATE TABLE course_material (
