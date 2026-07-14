@@ -206,3 +206,12 @@ MIT License
 ---
 
 > 💡 本项目为大学课程作业，如有问题欢迎提 Issue！
+
+
+---
+
+## 🚀 Live Demo
+
+在线体验地址：https://online-learning-platform-production-0f3c.up.railway.app
+
+（账号：admin / 密码：123456）
