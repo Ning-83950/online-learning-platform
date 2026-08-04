@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线学习平台 - Online Learning Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#00B894;
+  --primary-dark:#00A383;
+  --accent:#FDCB6E;
+  --bg:#0A1628;
+  --bg-card:#122340;
+  --text:#E2E8F0;
+  --text-secondary:#8899B4;
+  --gradient:linear-gradient(135deg,#00B894 0%,#00CEC9 100%);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,184,148,0.12) 0%,transparent 60%)}
+.hero-badge{display:inline-block;padding:8px 20px;border-radius:50px;background:rgba(0,184,148,0.12);border:1px solid rgba(0,184,148,0.25);color:var(--primary);font-size:14px;font-weight:600;margin-bottom:32px;backdrop-filter:blur(10px)}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;line-height:1.2}
+.hero p{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);max-width:700px;margin:0 auto 40px}
+.hero-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 32px;border-radius:12px;font-size:16px;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--gradient);color:#fff;box-shadow:0 8px 32px rgba(0,184,148,0.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,184,148,0.5)}
+.btn-outline{border:2px solid rgba(0,184,148,0.3);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--primary);background:rgba(0,184,148,0.06)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:900px;margin:0 auto 80px}
+.stat-card{background:var(--bg-card);border-radius:20px;padding:32px 24px;text-align:center;border:1px solid rgba(0,184,148,0.12);transition:all .3s}
+.stat-card:hover{border-color:rgba(0,184,148,0.35);transform:translateY(-4px)}
+.stat-num{font-size:48px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-label{color:var(--text-secondary);margin-top:12px;font-size:15px}
+
+/* Section */
+.section{padding:100px 0}
+.section-label{text-align:center;color:var(--primary);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.section-title{text-align:center;font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:20px}
+.section-subtitle{text-align:center;color:var(--text-secondary);max-width:600px;margin:0 auto 60px;font-size:16px}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.feature-card{background:var(--bg-card);border-radius:20px;padding:36px 28px;border:1px solid rgba(0,184,148,0.08);transition:all .3s;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:opacity .3s}
+.feature-card:hover::before{opacity:1}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(0,184,148,0.25)}
+.feature-icon{font-size:36px;margin-bottom:20px;display:block}
+.feature-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.feature-card p{color:var(--text-secondary);font-size:14px;line-height:1.7}
+
+/* Role Cards */
+.role-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.role-card{background:var(--bg-card);border-radius:20px;padding:40px 32px;border:1px solid rgba(0,184,148,0.12);transition:all .3s;text-align:center}
+.role-card:hover{border-color:rgba(0,184,148,0.35);transform:translateY(-4px)}
+.role-icon{font-size:56px;display:block;margin-bottom:20px}
+.role-card h3{font-size:24px;font-weight:700;margin-bottom:8px}
+.role-card .role-sub{color:var(--primary);font-size:14px;font-weight:600;margin-bottom:20px}
+.role-list{text-align:left;list-style:none;max-width:260px;margin:0 auto}
+.role-list li{color:var(--text-secondary);font-size:14px;padding:8px 0;padding-left:24px;position:relative;border-bottom:1px solid rgba(0,184,148,0.08)}
+.role-list li::before{content:'▸';position:absolute;left:0;color:var(--primary)}
+
+/* Tech Stack */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.tech-category{background:var(--bg-card);border-radius:20px;padding:32px;border:1px solid rgba(0,184,148,0.12)}
+.tech-category h3{font-size:18px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.tech-tags{display:flex;flex-wrap:wrap;gap:10px}
+.tech-tag{padding:6px 16px;border-radius:50px;background:rgba(0,184,148,0.08);color:var(--primary);font-size:13px;font-weight:500;border:1px solid rgba(0,184,148,0.18)}
+
+/* Architecture */
+.arch-section{background:var(--bg-card);border-radius:24px;padding:48px;border:1px solid rgba(0,184,148,0.12);text-align:center}
+.arch-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px;margin:30px 0}
+.arch-node{background:linear-gradient(135deg,rgba(0,184,148,0.15) 0%,rgba(0,184,148,0.04) 100%);border:1px solid rgba(0,184,148,0.25);border-radius:16px;padding:20px 28px;font-weight:600;font-size:15px;transition:all .3s}
+.arch-node:hover{border-color:var(--primary);transform:scale(1.05);background:rgba(0,184,148,0.12)}
+.arch-arrow{color:var(--accent);font-size:24px;font-weight:700}
+
+/* Table Grid */
+.table-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.table-item{background:var(--bg-card);border-radius:16px;padding:24px;border:1px solid rgba(0,184,148,0.08);display:flex;align-items:center;gap:16px}
+.table-icon{font-size:28px;flex-shrink:0}
+.table-item h4{font-size:16px;font-weight:600;margin-bottom:4px}
+.table-item p{color:var(--text-secondary);font-size:13px}
+
+/* Footer */
+.footer{text-align:center;padding:60px 24px;border-top:1px solid rgba(0,184,148,0.08);color:var(--text-secondary);font-size:14px}
+.footer a{color:var(--primary);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+  .hero h1{font-size:32px}
+  .arch-flow{flex-direction:column;gap:12px}
+  .arch-arrow{transform:rotate(90deg)}
+  .section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">🎓 全栈项目</div>
+    <h1>在线学习平台</h1>
+    <p>面向高校的在线教育系统 — 课程管理、作业批改、在线考试、数据看板，支持三种角色协同</p>
+    <div class="hero-links">
+      <a href="https://github.com/Ning-83950/online-learning-platform" class="btn btn-primary" target="_blank">📂 查看源码</a>
+      <a href="https://online-learning-platform-production-0f3c.up.railway.app" class="btn btn-outline" target="_blank">🌐 在线体验</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="container">
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num">18</div>
+      <div class="stat-label">控制器模块</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">14</div>
+      <div class="stat-label">数据库表</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3</div>
+      <div class="stat-label">用户角色</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">7+</div>
+      <div class="stat-label">核心模块</div>
+    </div>
+  </div>
+</div>
+
+<!-- Roles -->
+<div class="container">
+  <section class="section">
+    <div class="section-label">Multi-Role System</div>
+    <h2 class="section-title">三种角色 · 各司其职</h2>
+    <p class="section-subtitle">管理员、教师、学生三种身份，不同视角下的完整功能体系</p>
+    <div class="role-grid">
+      <div class="role-card">
+        <span class="role-icon">👑</span>
+        <h3>管理员</h3>
+        <div class="role-sub">系统管理者</div>
+        <ul class="role-list">
+          <li>用户管理（教师/学生）</li>
+          <li>课程分类管理</li>
+          <li>数据看板总览</li>
+          <li>系统配置维护</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🧑‍🏫</span>
+        <h3>教师</h3>
+        <div class="role-sub">课程创建者</div>
+        <ul class="role-list">
+          <li>创建课程 & 上传资料</li>
+          <li>布置作业 & 批改打分</li>
+          <li>创建考试 & 自动判分</li>
+          <li>发起讨论 & 分组管理</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🧑‍🎓</span>
+        <h3>学生</h3>
+        <div class="role-sub">课程学习者</div>
+        <ul class="role-list">
+          <li>浏览课程 & 选课退课</li>
+          <li>查看资料 & 提交作业</li>
+          <li>在线考试 & 即时出分</li>
+          <li>学习笔记 & 课程评价</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Core Features -->
+<div class="container">
+  <section class="section" style="padding-top:0">
+    <div class="section-label">Core Modules</div>
+    <h2 class="section-title">核心功能模块</h2>
+    <p class="section-subtitle">七大模块覆盖在线教育的完整教学流程</p>
+    <div class="features">
+      <div class="feature-card">
+        <span class="feature-icon">📚</span>
+        <h3>课程管理</h3>
+        <p>课程 CRUD、分类管理、封面图上传，支持富文本课程介绍，学生自主浏览与选课</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📁</span>
+        <h3>资料管理</h3>
+        <p>教师上传课件视频/PDF 文档，学生在学习资料区按章节查看，支持多种文件格式</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📝</span>
+        <h3>作业系统</h3>
+        <p>教师发布作业设定截止时间，学生在线提交（文件/文本），教师批改并打分</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>考试系统</h3>
+        <p>教师创建在线考试（选择题型），设定时间窗口，学生在线答题，系统自动判分出分</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💬</span>
+        <h3>讨论区</h3>
+        <p>课程专属讨论版块，教师发起话题，学生参与讨论，促进师生互动</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📒</span>
+        <h3>学习笔记</h3>
+        <p>学生在线记录学习笔记，关联到具体课程，支持随时查看与编辑</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📈</span>
+        <h3>数据看板</h3>
+        <p>ECharts 可视化展示选课统计、考试通过率、学习活跃度等核心指标</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">👥</span>
+        <h3>分组管理</h3>
+        <p>教师创建学习小组、分配成员，支持小组协作学习模式</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Tech Stack -->
+<div class="container">
+  <section class="section" style="padding-top:0">
+    <div class="section-label">Tech Stack</div>
+    <h2 class="section-title">技术栈</h2>
+    <p class="section-subtitle">Spring Boot + Thymeleaf 服务端渲染，简洁高效的全栈方案</p>
+    <div class="tech-grid">
+      <div class="tech-category">
+        <h3>⚙️ 后端核心</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Spring Boot 2.7.18</span>
+          <span class="tech-tag">MyBatis Plus 3.5.5</span>
+          <span class="tech-tag">Sa-Token 1.37.0</span>
+          <span class="tech-tag">MySQL 8.0.33</span>
+          <span class="tech-tag">Lombok</span>
+        </div>
+      </div>
+      <div class="tech-category">
+        <h3>🎨 前端</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Thymeleaf</span>
+          <span class="tech-tag">ECharts</span>
+          <span class="tech-tag">原生 JavaScript</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">HTML5</span>
+        </div>
+      </div>
+      <div class="tech-category">
+        <h3>🔐 权限 & 部署</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">RBAC 权限模型</span>
+          <span class="tech-tag">Sa-Token 会话</span>
+          <span class="tech-tag">Docker 部署</span>
+          <span class="tech-tag">Railway 托管</span>
+          <span class="tech-tag">Maven 构建</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Architecture -->
+<div class="container">
+  <section class="section" style="padding-top:0">
+    <h2 class="section-title">系统架构</h2>
+    <p class="section-subtitle">传统 MVC + 服务端渲染，精简可靠的全栈架构</p>
+    <div class="arch-section">
+      <div class="arch-flow">
+        <div class="arch-node">🖥️ Browser<br><small style="color:var(--text-secondary)">Thymeleaf 模板</small></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">🎮 Controller<br><small style="color:var(--text-secondary)">18 个控制器</small></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">⚙️ Service<br><small style="color:var(--text-secondary)">业务逻辑</small></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">🗄️ Mapper<br><small style="color:var(--text-secondary)">MyBatis Plus</small></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">💾 MySQL<br><small style="color:var(--text-secondary)">数据存储</small></div>
+      </div>
+      <div style="margin-top:16px;color:var(--text-secondary);font-size:14px">
+        Sa-Token 统一认证拦截 ｜ ApiResult 统一响应格式 ｜ GlobalExceptionHandler 全局异常处理
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Database -->
+<div class="container">
+  <section class="section" style="padding-top:0">
+    <h2 class="section-title">数据库设计</h2>
+    <p class="section-subtitle">14 张业务表，完整覆盖教学场景</p>
+    <div class="table-grid">
+      <div class="table-item">
+        <span class="table-icon">👤</span>
+        <div><h4>用户表</h4><p>user — 三种角色统一管理</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📂</span>
+        <div><h4>分类表</h4><p>category — 课程分类</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📚</span>
+        <div><h4>课程表</h4><p>course — 课程核心数据</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📄</span>
+        <div><h4>资料表</h4><p>course_material</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📋</span>
+        <div><h4>选课表</h4><p>enrollment — 选课记录</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📝</span>
+        <div><h4>作业表</h4><p>assignment — 作业发布</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📤</span>
+        <div><h4>提交表</h4><p>submission — 作业提交</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📊</span>
+        <div><h4>考试表</h4><p>exam + exam_record</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">💬</span>
+        <div><h4>讨论表</h4><p>discussion</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">📒</span>
+        <div><h4>笔记表</h4><p>note — 学习笔记</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">⭐</span>
+        <div><h4>评价表</h4><p>review — 课程评分</p></div>
+      </div>
+      <div class="table-item">
+        <span class="table-icon">👥</span>
+        <div><h4>小组表</h4><p>student_group + member</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>在线学习平台 &copy; 2026 ｜ <a href="https://github.com/Ning-83950/online-learning-platform" target="_blank">GitHub</a> ｜ MIT License</p>
+</footer>
+
+</body>
+</html>
